@@ -15,12 +15,12 @@ const extension: JupyterFrontEndPlugin<void> = {
     app.restored.then(() => {
       // Access the DOM elements for the sidebar and main panel
       const leftSidebar = document.querySelector('.jp-SideBar');
-      const mainPanel = document.querySelector('#jp-main-content-panel');
+      const mainPanel1 = document.querySelector('#jp-main-content-panel');
 
       // Check if the sidebar and main panel exist, then remove the sidebar
-      if (leftSidebar && mainPanel) {
+      if (leftSidebar && mainPanel1) {
         console.log('Removing the left sidebar');
-        mainPanel.removeChild(leftSidebar);
+        mainPanel1.removeChild(leftSidebar);
       } else {
         console.warn('Left sidebar or main panel not found');
       }
@@ -93,7 +93,10 @@ const extension: JupyterFrontEndPlugin<void> = {
 
           
           // Make the workspace full screen
-      const workspace = document.querySelector('.jp-DocumentMain') as HTMLElement;
+      //const workspace = document.querySelector('.jp-DocumentMain') as HTMLElement;
+       // Access the main content panel
+       const workspace = document.querySelector('#jp-main-content-panel') as HTMLElement;  // The main content area
+
       if (workspace) {
         workspace.style.width = '100vw'; // Set width to full viewport width
         workspace.style.height = '100vh'; // Set height to full viewport height
@@ -106,6 +109,35 @@ const extension: JupyterFrontEndPlugin<void> = {
         console.log('Workspace not found.');
       }
 
+
+      // Make the workspace full screen
+      const dockPanel = document.querySelector('.jp-main-dock-panel') as HTMLElement;
+      if (dockPanel) {
+        dockPanel.style.width = '100vw'; // Set width to full viewport width
+        dockPanel.style.height = '100vh'; // Set height to full viewport height
+        dockPanel.style.position = 'absolute'; // Change position to absolute
+        dockPanel.style.top = '0'; // Align top to 0
+        dockPanel.style.left = '0'; // Align left to 0
+        dockPanel.style.overflow = 'hidden'; // Prevent overflow
+        console.log('Workspace set to full screen successfully!');
+      } else {
+        console.log('Workspace not found.');
+      }
+
+            // Make the workspace full screen
+            const dockPanel2 = document.querySelector('#jp-main-dock-panel') as HTMLElement;
+            if (dockPanel2) {
+              dockPanel2.style.width = '100vw'; // Set width to full viewport width
+              dockPanel2.style.height = '100vh'; // Set height to full viewport height
+              dockPanel2.style.position = 'absolute'; // Change position to absolute
+              dockPanel2.style.top = '0'; // Align top to 0
+              dockPanel2.style.left = '0'; // Align left to 0
+              dockPanel2.style.overflow = 'hidden'; // Prevent overflow
+              console.log('Workspace set to full screen successfully!');
+            } else {
+              console.log('Workspace not found.');
+            }
+      
 
           // Try to remove the bottom panel (verify the selector is correct)
           const bottomPanel2 = document.querySelector('#jp-bottom-panel');
@@ -126,6 +158,42 @@ const extension: JupyterFrontEndPlugin<void> = {
           } else {
             console.log('Top panel not found.');
           }
+
+
+
+
+
+
+
+
+                // Access the main content panel and adjust its CSS
+      const mainPanel = document.querySelector('#jp-main-content-panel');
+      if (mainPanel) {
+        // Modify its CSS to take up the full width and height
+        (mainPanel as HTMLElement).style.flexGrow = '1';
+        (mainPanel as HTMLElement).style.width = '100%';
+        (mainPanel as HTMLElement).style.height = '100vh';  // Full height of the viewport
+
+        // Adjust the parent container to ensure proper resizing
+        const mainAreaWidget = document.querySelector('.jp-MainAreaWidget') as HTMLElement;
+        if (mainAreaWidget) {
+          mainAreaWidget.style.flexGrow = '1';
+          mainAreaWidget.style.width = '100%';
+          mainAreaWidget.style.height = '100vh';
+        }
+
+        // Adjust the pipeline editor container if necessary
+        const pipelineEditor = document.querySelector('.elyra-PipelineEditor') as HTMLElement;
+        if (pipelineEditor) {
+          pipelineEditor.style.flexGrow = '1';
+          pipelineEditor.style.width = '100%';
+          pipelineEditor.style.height = '100vh';
+        }
+
+        console.log('Main content and pipeline editor set to full screen');
+      } else {
+        console.warn('Main content panel not found');
+      }
 
     });
   }

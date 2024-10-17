@@ -11,9 +11,9 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.2.5",
-    "@jupyterlab/apputils": "^4.3.5",
-    "@jupyterlab/mainmenu": "^4.2.5"
+    "@jupyterlab/application": "^3.6.8",
+    "@jupyterlab/apputils": "^3.6.8",
+    "@jupyterlab/mainmenu": "^3.6.8"
   },
   "jupyterlab": {
     "extension": true
