@@ -1,0 +1,23 @@
+
+{
+  "name": "olym_ext2",
+  "version": "0.1.0",
+  "description": "A simple JupyterLab extension",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^4.2.5",
+    "@jupyterlab/apputils": "^4.3.5",
+    "@jupyterlab/mainmenu": "^4.2.5"
+  },
+  "jupyterlab": {
+    "extension": true
+  },
+   "main": "lib/index.js"
+
+}
